@@ -23,13 +23,13 @@ DaiQiang: daiqianghaha@foxmail.com |
 ## Login
 ![login](./README/login.png "Login") 
 ## File Preview
-![preview](./README/preview_EN.gif "File Preview")
+![preview](./README/preview_CN.gif "File Preview")
 ## Drag to move or copy files
-![drag](./README/drag_EN.gif "Drag to move or copy files")
+![drag](./README/drag_CN.gif "Drag to move or copy files")
 ## Quickly rename files
-![rename](./README/rename_EN.gif "quickly rename")
+![rename](./README/rename_CN.gif "quickly rename")
 ## Delete files
-![delete](./README/delete_EN.gif "Delete files")
+![delete](./README/delete_CN.gif "Delete files")
 
 
 

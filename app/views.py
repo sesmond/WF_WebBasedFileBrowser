@@ -70,7 +70,8 @@ def main(req):
     global rootpath
     try:
         with open("./app/rootpath.conf") as root:
-            rootpath=root.read()
+            rootpath = root.read()
+            print("rootpath:",rootpath)
     except Exception:
         pass
     Folder = Utils.Folder(rootpath)
@@ -179,8 +180,8 @@ def uploadFiles(req):
 def previewFiles(req):
     path = req.POST.get("path", None)
     ext = os.path.splitext(path)[1][1:].lower()
-    imgExtList = ["jpg", "png", "bmp"]
-    textExtList = ["txt", "ini", "inf", "py", "c", "cpp", "java", "conf"]
+    imgExtList = ["jpg", "png", "bmp","gif","jpeg"]
+    textExtList = ["txt", "ini", "inf", "py", "c", "cpp", "java", "conf","css","log"]
     if ext in imgExtList:
         with open(path, 'rb') as f:
             image_data = f.read()
@@ -209,6 +210,7 @@ def previewFiles(req):
             "type": 'text'
         }
         return HttpResponse(json.dumps(response), content_type="application/json")
+    print("加载文件：",path,ext)
     response = {
         "file": "Unsupport file \n 不支持的文件类型",
         "type": 'error'

@@ -5,6 +5,7 @@ from django.http import HttpResponse, Http404, FileResponse
 from django.utils.encoding import escape_uri_path
 import tempfile, zipfile
 from wsgiref.util import FileWrapper
+import glob
 
 
 class Folder:
@@ -14,15 +15,17 @@ class Folder:
     def __getFolderDict(self, path):
         try:
             os.chdir(path)
-            content = os.listdir(path)
+            #TODO 是否能查看隐藏文件！！！ 做成动态的，用户权限之类的。
+            # path_content = os.listdir(path)
+            path_content = glob.glob(os.path.join(path, '*'))
             currentDict = {"name": os.path.basename(path), "open": False, "path": path}
             children = []
-            for i in content:
+            for i in path_content:
                 if os.path.isdir(i):
-                    children.append({"name": i, "path": path + "/" + i, "isParent": "true"})
-            for i in content:
+                    children.append({"name": os.path.basename(i), "path": i, "isParent": "true"})
+            for i in path_content:
                 if not os.path.isdir(i):
-                    children.append({"name": i, "path": path + "/" + i})
+                    children.append({"name": os.path.basename(i), "path": i})
             currentDict["children"] = children
             return children
         except Exception as e:

@@ -141,7 +141,8 @@
             pathInput.value = treeNode.path;
             checkbox = document.getElementById("needPreview");
             if (checkbox.checked)
-                preview(treeNode.path);
+                if ( !treeNode.isParent)
+                    preview(treeNode.path);
             mdui.updateTextFields();
             var zTree = $.fn.zTree.getZTreeObj("treeDemo");
             var nodes = zTree.getSelectedNodes();
@@ -358,7 +359,8 @@
                 pathInput.value = treeNode.path;
                 checkbox = document.getElementById("needPreview");
                 if (checkbox.checked)
-                    preview(treeNode.path);
+                    if ( !treeNode.isParent)
+                        preview(treeNode.path);
                 mdui.updateTextFields();
                 var zTree = $.fn.zTree.getZTreeObj("treeDemo");
                 var nodes = zTree.getSelectedNodes();
@@ -389,6 +391,7 @@
     </script>
     <script>
         function preview(path) {
+            //TODO 如果是
             const xmlhttp = new XMLHttpRequest();
             xmlhttp.open("POST", "./previewFiles", true);
             xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
